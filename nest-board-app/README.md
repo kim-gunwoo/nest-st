@@ -45,6 +45,8 @@ $ nest g controller boards --no-spec
 ## service 생성
 # nest g service boards --no-spec
 
+## Pipe 모듈 설치
+$ npm i class-validator class-transformer
 ```
 
 ```js
@@ -132,5 +134,23 @@ getBoard(@Query('id') id: string) {
 getBoard(@Query() querys) {
   const { id, test } = querys;
   console.log(querys, id, test); // {id : 123, test: 345}, 123, 456
+}
+```
+
+```js
+// Handler-level Pipes
+@Post('/')
+@UsePipes(ValidationPipe)
+createBoard(@Body() createBoardDto: CreateBoardDto): Board {
+  return this.boardsService.createBoard(createBoardDto);
+}
+
+// Parameter-level Pipes
+@Patch('/:id/status')
+updateBoardStatus(
+  @Param('id') id: string,
+  @Body('status', BoardStatusValidationPipe) status: BoardStatus,
+): Board {
+  return this.boardsService.updateBoardStatus(id, status);
 }
 ```
