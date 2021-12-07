@@ -47,6 +47,10 @@ $ nest g controller boards --no-spec
 
 ## Pipe 모듈 설치
 $ npm i class-validator class-transformer
+
+## TypeORM , Postgresql
+$ npm i @nestjs/typeorm typeorm pg
+
 ```
 
 ```js
