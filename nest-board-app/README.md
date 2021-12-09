@@ -36,20 +36,23 @@ $ npm run test:cov
 
 ```
 ## moduls 생성
-$ nest g module boards
+$ nest g module {생성하고자 하는 모듈명}
 
 ## controller 생성
 ## --no-spec 테스트 코드 생성하지 않음
-$ nest g controller boards --no-spec 
+$ nest g controller {생성하고자 하는 모듈명} --no-spec 
 
 ## service 생성
-# nest g service boards --no-spec
+# nest g service {생성하고자 하는 모듈명} --no-spec
 
-## Pipe 모듈 설치
+## Pipe 모듈 설치 , 유효성 검사
 $ npm i class-validator class-transformer
 
 ## TypeORM , Postgresql
 $ npm i @nestjs/typeorm typeorm pg
+
+## 암호화 bcryptjs
+$ npm i bcryptjs
 
 ```
 
