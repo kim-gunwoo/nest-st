@@ -54,6 +54,9 @@ $ npm i @nestjs/typeorm typeorm pg
 ## 암호화 bcryptjs
 $ npm i bcryptjs
 
+## 인증 처리 @nestjs/jwt @nestjs/passport passport passport-jwt
+$ npm i @nestjs/jwt @nestjs/passport passport passport-jwt @types/passport-jwt
+
 ```
 
 ```js
