@@ -57,6 +57,9 @@ $ npm i bcryptjs
 ## 인증 처리 @nestjs/jwt @nestjs/passport passport passport-jwt
 $ npm i @nestjs/jwt @nestjs/passport passport passport-jwt @types/passport-jwt
 
+## 설정 파일 
+$ npm i config 
+
 ```
 
 ```js

@@ -1,0 +1,8 @@
+db:
+  host: 'localhost'
+  username: 'gimgeon-u'
+  password: 'postgres'
+  synchronize: true
+
+jwt:
+  secret: 'secret-key'
