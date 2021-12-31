@@ -3,5 +3,5 @@
 
 ```
 $ npm i express 
-$ npm i @type/express -D
+$ npm i @types/express -D
 ```
