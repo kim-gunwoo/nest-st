@@ -1,8 +1,3 @@
-
-
-
-
-
 ### 공식 문서 정리
 
 - node 공식 문서 : https://nodejs.org/en/docs/
@@ -19,6 +14,14 @@
 
 - tsconfig 옵션 : https://www.staging-typescript.org/tsconfig
 
-### 참고 
+- mongoDB docs : https://docs.mongodb.com/manual/tutorial/getting-started
+
+- nestjs 공식 문서 : https://docs.nestjs.com/
+
+- nestjs 공식 문서 한국어 번역 : https://docs.nestjs.kr/
+
+- 파이프 필터 패턴 : https://docs.microsoft.com/en-us/azure/architecture/patterns/pipes-and-filters
+
+### 참고
 
 - https://github.com/amamov/teaching-nestjs-a-to-z
