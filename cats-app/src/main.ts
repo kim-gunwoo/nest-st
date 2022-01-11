@@ -4,9 +4,11 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/exceptions/http-exception.filter';
 import * as expressBasicAuth from 'express-basic-auth';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import * as path from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const port = process.env.PORT;
 
   app.useGlobalPipes(new ValidationPipe());
@@ -21,6 +23,10 @@ async function bootstrap() {
     }),
   );
 
+  app.useStaticAssets(path.join(__dirname, './common', 'uploads'), {
+    prefix: '/media',
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Title')
     .setDescription('description')
@@ -29,9 +35,9 @@ async function bootstrap() {
       {
         description: 'jwt 입력, format: Bearer <JWT>',
         name: 'Authorization',
-        bearerFormat: 'JWT',
+        bearerFormat: 'jwt',
         type: 'http',
-        scheme: 'Bearer',
+        scheme: 'bearer',
         in: 'Header',
       },
       'AccessToken',
@@ -39,13 +45,12 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
-
   app.enableCors({
-    // origin: ['http://localhost:3000'],
     origin: true,
     credentials: true,
   });
 
   await app.listen(port);
 }
+
 bootstrap();

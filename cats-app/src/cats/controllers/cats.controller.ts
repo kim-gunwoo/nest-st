@@ -3,14 +3,18 @@ import {
   Controller,
   Get,
   Post,
+  UploadedFiles,
   UseFilters,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
+import { FilesInterceptor } from '@nestjs/platform-express';
 import {
+  ApiBasicAuth,
   ApiBearerAuth,
   ApiOperation,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
 import { AuthService } from 'src/auth/auth.service';
@@ -19,10 +23,12 @@ import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
 import { CurrentUser } from 'src/common/decorators/user.decorator';
 import { HttpExceptionFilter } from 'src/common/exceptions/http-exception.filter';
 import { SuccessInterceptor } from 'src/common/interceptors/success.interceptor';
-import { CatsService } from './cats.service';
-import { ReadOnlyCatDto } from './dto/cat.dto';
-import { CatCurrentDto } from './dto/cats.current.dto';
-import { CatRequestDto } from './dto/cats.request.dto';
+import { multerOptions } from 'src/common/utils/multer.options';
+import { Cat } from '../cats.schema';
+import { CatsService } from '../services/cats.service';
+import { ReadOnlyCatDto } from '../dto/cat.dto';
+import { CatCurrentDto } from '../dto/cats.current.dto';
+import { CatRequestDto } from '../dto/cats.request.dto';
 
 @ApiTags('cats')
 @Controller('cats')
@@ -35,11 +41,10 @@ export class CatsController {
   ) {}
 
   @ApiOperation({ summary: '현재 고양이 가져오기' })
-  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('AccessToken')
+  @UseGuards(JwtAuthGuard)
   @Get()
   getCurrentCat(@CurrentUser() cat: CatCurrentDto) {
-    console.log(cat);
     return cat.readOnlyData;
   }
 
@@ -65,8 +70,20 @@ export class CatsController {
   }
 
   @ApiOperation({ summary: '고양이 이미지 업로드' })
+  @UseInterceptors(FilesInterceptor('image', 10, multerOptions('cats')))
+  @ApiBearerAuth('AccessToken')
+  @UseGuards(JwtAuthGuard)
   @Post('upload')
-  uploadCatImg() {
-    return 'uploadImg';
+  uploadCatImg(
+    @UploadedFiles() files: Array<Express.Multer.File>,
+    @CurrentUser() cat: Cat,
+  ) {
+    return this.catsService.uploadImg(cat, files);
+  }
+
+  @ApiOperation({ summary: '모든 고양이 가져오기' })
+  @Get('all')
+  getAllCat() {
+    return this.catsService.getAllCat();
   }
 }
