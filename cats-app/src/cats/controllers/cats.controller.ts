@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  UploadedFile,
   UploadedFiles,
   UseFilters,
   UseGuards,
@@ -29,6 +30,7 @@ import { CatsService } from '../services/cats.service';
 import { ReadOnlyCatDto } from '../dto/cat.dto';
 import { CatCurrentDto } from '../dto/cats.current.dto';
 import { CatRequestDto } from '../dto/cats.request.dto';
+import { AmazonS3FileInterceptor } from 'nestjs-multer-extended';
 
 @ApiTags('cats')
 @Controller('cats')
@@ -70,15 +72,22 @@ export class CatsController {
   }
 
   @ApiOperation({ summary: '고양이 이미지 업로드' })
-  @UseInterceptors(FilesInterceptor('image', 10, multerOptions('cats')))
+  @UseInterceptors(
+    AmazonS3FileInterceptor('image', {
+      dynamicPath: 'cats',
+    }),
+  )
+  // @UseInterceptors(FilesInterceptor('image', 10, multerOptions('cats')))
   @ApiBearerAuth('AccessToken')
   @UseGuards(JwtAuthGuard)
   @Post('upload')
   uploadCatImg(
-    @UploadedFiles() files: Array<Express.Multer.File>,
+    // @UploadedFiles() files: Array<Express.Multer.File>,
+    @UploadedFile() file: Array<Express.Multer.File>,
     @CurrentUser() cat: Cat,
   ) {
-    return this.catsService.uploadImg(cat, files);
+    return this.catsService.uploadImg(cat, file);
+    // return this.catsService.uploadImg(cat, files);
   }
 
   @ApiOperation({ summary: '모든 고양이 가져오기' })
