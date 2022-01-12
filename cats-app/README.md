@@ -11,6 +11,11 @@ $ npm install --save-dev @types/passport-local
 $ npm install --save @nestjs/jwt passport-jwt
 $ npm install --save-dev @types/passport-jwt
 $ npm i -D @types/multer
+$ npm i @nestjs/config
 
 $ npm i express-basic-auth
+
+$ npm i -s nestjs-multer-extended // multer lib
+
+$ npm i aws-sdk // aws-sdk
 ```

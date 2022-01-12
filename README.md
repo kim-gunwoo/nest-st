@@ -22,9 +22,13 @@
 
 - 파이프 필터 패턴 : https://docs.microsoft.com/en-us/azure/architecture/patterns/pipes-and-filters
 
+- aws s3 공식 문서 : https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/Welcome.html
+
 ### 참고
 
 - https://github.com/amamov/teaching-nestjs-a-to-z
+
+- aws 권한 코드 https://aws.amazon.com/ko/premiumsupport/knowledge-center/read-access-objects-s3-bucket/
 
 ```
 ++ 20.08.30
@@ -48,4 +52,51 @@ mongoose 설정 옵션 정리
 - useUnifiedTopology : true
 
 - 최신 mongodb 드라이버 엔진을 사용하도록 설정합니다. (안정적인 연결을 유지할 수 없는 경우를 제외하고 이 옵션을 true로 설정해야 합니다.)
+```
+
+### 배포
+
+```
+1. Pm2 설치 https://github.com/Unitech/pm2
+    - npm i pm2 -g // 안되면 sudo npm i pm2 -g
+    - pm2 list
+    - package.json 수정, .env MODE=‘prod’로 수정, PORT=80으로 수정
+    - npm run start:debug
+    - npm run build
+    - npm run start:prod
+    - pm2 list
+    - pm2 kill
+
+2. github에 코드 올리기
+    - https://github.com/amamov/gits
+    - .env는 .gitignore에 추가해서 올리기
+    - dist만 따로 빼서
+
+3. VPS : 가상 사설 서버 구축
+    - AWS Lightsail 사용
+    - 인스턴스 생성
+    - ssh를 사용하여 연결
+    - sudo apt-get update
+    - sudo apt-get -y upgrade
+    - sudo apt-get install build-essential
+    - sudo apt-get install curl
+    - curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash --
+    - sudo apt-get install -y nodejs
+    - sudo apt-get install git
+    - sudo apt-get install vim
+    - touch .gitconfig
+    - git config --global user.name kim-gunwoo
+    - git config --global user.email kgunu93@gmail.com
+    - git config --global --list
+    - git clone <프로젝트>
+    - cd <프로젝트>
+    - npm i
+    - sudo npm i -g @nestjs/cli
+    - sudo npm i -g pm2
+    - vi .env (환경변수 붙여 넣기)
+    - sudo npm run start:prod
+
+4. 고정 퍼블릭 주소 할당받기
+
+5. 배포 성공!!!
 ```

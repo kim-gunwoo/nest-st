@@ -72,7 +72,8 @@ _CatSchema.virtual('readOnlyData').get(function (this: Cat) {
     id: this.id,
     email: this.email,
     name: this.name,
-    imgUrl: this.imgUrl,
+    // imgUrl: this.imgUrl,
+    imgUrl: `https://nestcat11.s3.us-east-2.amazonaws.com/${this.imgUrl}`,
     comments: this.comments,
   };
 });
