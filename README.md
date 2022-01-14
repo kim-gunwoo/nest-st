@@ -4,6 +4,8 @@
 
 - vscode : https://code.visualstudio.com/
 
+- MVC 패턴 : https://developer.mozilla.org/ko/docs/Glossary/MVC
+
 - http 프로토콜 자료 1 : https://developer.mozilla.org/ko/docs/Web/HTTP
 
 - http 프로토콜 자료 2 : https://developers.google.com/web/fundamentals/performance/http2
@@ -23,6 +25,10 @@
 - 파이프 필터 패턴 : https://docs.microsoft.com/en-us/azure/architecture/patterns/pipes-and-filters
 
 - aws s3 공식 문서 : https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/Welcome.html
+
+- admin-bro 공식 문서 : https://adminbro.com/tutorial-customizing-resources.html
+
+- 깃허브 링크 : https://github.com/amamov/nestjs-mongoose-admin
 
 ### 참고
 
