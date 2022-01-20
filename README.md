@@ -30,12 +30,6 @@
 
 - 깃허브 링크 : https://github.com/amamov/nestjs-mongoose-admin
 
-### 참고
-
-- https://github.com/amamov/teaching-nestjs-a-to-z
-
-- aws 권한 코드 https://aws.amazon.com/ko/premiumsupport/knowledge-center/read-access-objects-s3-bucket/
-
 ```
 ++ 20.08.30
 
@@ -106,3 +100,9 @@ mongoose 설정 옵션 정리
 
 5. 배포 성공!!!
 ```
+
+### 참고
+
+- https://github.com/amamov/teaching-nestjs-a-to-z
+
+- aws 권한 코드 https://aws.amazon.com/ko/premiumsupport/knowledge-center/read-access-objects-s3-bucket/
